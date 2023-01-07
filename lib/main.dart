@@ -1,35 +1,33 @@
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:pornhubs/provider/provider.dart';
-
+import 'package:pornhubs/screen/second_screen.dart';
+import 'package:pornhubs/screen/view.dart';
 import 'package:provider/provider.dart';
+import 'package:sizer/sizer.dart';
 
 
-import 'bikes/bikedetils.dart';
-import 'bikes/bikes.dart';
-
-
-void main() {
+void main(){
+  WidgetsFlutterBinding.ensureInitialized();
+  MobileAds.instance.initialize();
   runApp(
-    MultiProvider(
-      providers: [
-        ListenableProvider<first_provider>(
-          create: (context) => first_provider(),
-        ),
-      ],
-      child: MaterialApp(
+      Sizer(builder: (context,orient,divetype){
+        return MultiProvider(
+          providers: [
+            ListenableProvider(create: (context)=>first_provider()),
+          ],
+          child: MaterialApp(
+            debugShowCheckedModeBanner: false,
+            routes: {
+              '/':(context)=>webView_Screen(),
+              'sec':(context)=>Second_Screen(),
 
-        debugShowCheckedModeBanner: false,
-        routes: {
-
-          '/': (context) => Bikes(),
-          'bikesdetils': (context) => BikesDetils(),
-
-
-
-        },
-      ),
-    ),
+            },
+          ),
+        );
+      }
+      )
   );
+
 }

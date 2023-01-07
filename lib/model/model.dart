@@ -1,4 +1,5 @@
 class Modeldata{
-  String? image,url;
-  Modeldata({this.image,this.url,});
+  String ? image,url;
+  Modeldata({this.image, this.url});
 }
+
