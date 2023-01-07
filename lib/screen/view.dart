@@ -31,12 +31,17 @@ class webView_ScreenState extends State<webView_Screen> {
     webviewT = Provider.of<first_provider>(context,listen: true);
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.black,
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text("Bank"),
+        ),
+        backgroundColor: Colors.white,
         body: GridView.custom(
           gridDelegate: SliverStairedGridDelegate(
             tileBottomSpace: 0,
             startCrossAxisDirectionReversed: true,
             pattern: [
+              StairedGridTile(1.0, 5),
               StairedGridTile(0.5, 0.8),
               StairedGridTile(0.5, 0.8),
               StairedGridTile(1.0, 5),
