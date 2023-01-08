@@ -27,15 +27,16 @@ class webView_ScreenState extends State<webView_Screen> {
   var webviewF;
   @override
   Widget build(BuildContext context) {
-    webviewF = Provider.of<first_provider>(context,listen: false);
-    webviewT = Provider.of<first_provider>(context,listen: true);
+    webviewF = Provider.of<first_provider>(context, listen: false);
+    webviewT = Provider.of<first_provider>(context, listen: true);
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Color(0xff242424),
         appBar: AppBar(
+          elevation: 0,
           centerTitle: true,
-          title: Text("Bank"),
+          title: Text("Free Hub"),
         ),
-        backgroundColor: Colors.white,
         body: GridView.custom(
           gridDelegate: SliverStairedGridDelegate(
             tileBottomSpace: 0,
@@ -48,25 +49,29 @@ class webView_ScreenState extends State<webView_Screen> {
             ],
           ),
           childrenDelegate: SliverChildBuilderDelegate(
-                (context, index) {
+            (context, index) {
               bannerAds();
-              if(webviewF.l1[index] == null)
-              {
+              if (webviewF.l1[index] == null) {
                 return AdWidget(
                   ad: bannerAd!,
                 );
-              }
-
-              else
-              {
-                return  Padding(
+              } else {
+                return Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: InkWell(
-                    onTap: (){
-                      webviewF.Datapick = Modeldata(url: webviewF.l1[index].url,);
+                    onTap: () {
+                      webviewF.Datapick = Modeldata(
+                        url: webviewF.l1[index].url,
+                      );
                       Navigator.pushNamed(context, 'sec');
                     },
-                    child: Container(color: Colors.black,child: ClipRRect(borderRadius: BorderRadius.circular(20),child: Image.asset(webviewF.l1[index].image,fit: BoxFit.cover,))),
+                    child: Container(
+                        child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image.asset(
+                              webviewF.l1[index].image,
+                              fit: BoxFit.cover,
+                            ))),
                   ),
                 );
               }
